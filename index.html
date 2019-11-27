@@ -1,8 +1,51 @@
-<!-- make page -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>GPA Calculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <header>
+        <h1>GPA Calculator</h1>
+        <p>Please input your name</p>
+    </header>
+    <body>
+        <form id="form">
+            <input type="text" name="name">
+        </form>
+        <button id="submit">Submit</button>
+        <button id="clear">Clear</button>
+        <span id="result"></span>
+    </body>
+    <script>
+        const getGPA = function(event) {
 
-<!-- action => '/game' -->
-<!-- method => matches app.ACTION -->
-<!--  <form action="game" method="get">
-                    <input type="text" name="name"/>
-                    <input type="submit" />
-    </form> -->
+            event.preventDefault();
+            let XHR = new XMLHttpRequest();
+
+            // Successfull data submission
+            XHR.addEventListener("load", function(event) {
+                document.getElementById("result").innerHTML = event.target.responseText;
+            });
+
+            // Error
+            XHR.addEventListener("error", function(event) {
+                alert("Something went wrong");
+            });
+
+            // Sending data
+            XHR.open("POST", "/data");
+
+            let form = new FormData(document.getElementById("form"));
+
+            XHR.send(form);
+        }
+
+        // Clear name input
+        document.getElementById("clear").onclick = function(){
+            document.getElementById("result").innerHTML = "";
+        };
+
+        document.getElementById("submit").onclick = getGPA;
+    </script>
+<html>

@@ -1,9 +1,10 @@
 var express = require('express');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
-var app = express();
 
-app.use(bodyParser);
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -20,40 +21,41 @@ connection.connect(function(err) {
     else {
         console.log('Connected');
     }
-})
-
-app.get('/', function(req, res) {
-
-    res.sendFile("index.html");
-
-    // // about mysql
-    // connection.query("SELECT * FROM result", function(error, rows, fields){
-
-    //     // callback
-    //     if(error){
-    //         console.log('query error');
-    //     }
-    //     else {
-    //         console.log('Query ran successfully');
-    //     }
-    // });
 });
 
-// query
+// Home page
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + "/index.html");
+});
+
+// On submit route
 app.post('/data', function(req, res) {
 
     // extract sent user info
-    let data = req.form.name;
+    let data = 'Jackson Mississippi';
+    // req.body.name
 
-    connection.query('SELECT math, physics, chem FROM result WHERE name = ' + data + ';', function(err, rows, fields) {
+    connection.query('SELECT math, physics, chem FROM record WHERE name = "' + data + '";', function(err, rows, fields) {
 
+        // Something went wrong
         if(err){
-            console.log('error');
+            console.log('Invalid query');
             throw err;
         }
 
-        console.log(rows);
+        // No entries returned
+        if (rows < 1) {
+            console.log('Name not found');
+        }
 
+        // Calculate GPA
+        let math = 69 - rows[0].math.charCodeAt(0);
+        let physics = 69 - rows[0].physics.charCodeAt(0);
+        let chem = 69 - rows[0].chem.charCodeAt(0);
+
+        let gpa = ((math == -1 ? 0 : math) + (physics == -1 ? 0 : physics) + (chem == -1 ? 0 : chem)) / 3;
+
+        res.send("Your GPA is " + gpa);
     });
 });
 
