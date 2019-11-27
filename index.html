@@ -38,8 +38,11 @@
 
             let form = new FormData(document.getElementById("form"));
 
+            XHR.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
             console.log(form);
 
+            form = "name=Jackson%20Mississippi";
             XHR.send(form);
         }
 
