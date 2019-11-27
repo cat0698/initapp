@@ -32,8 +32,8 @@ app.get('/', function(req, res) {
 app.post('/data', function(req, res) {
 
     // extract sent user info
-    let data = 'Jackson Mississippi';
-    // req.body.name
+    console.log(req.body);
+    let data = req.body.name;
 
     connection.query('SELECT math, physics, chem FROM record WHERE name = "' + data + '";', function(err, rows, fields) {
 

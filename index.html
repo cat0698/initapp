@@ -11,7 +11,7 @@
     </header>
     <body>
         <form id="form">
-            <input type="text" name="name">
+            <input type="text" name="name" id="name">
         </form>
         <button id="submit">Submit</button>
         <button id="clear">Clear</button>
@@ -34,18 +34,29 @@
             });
 
             // Sending data
-            XHR.open("POST", "/data");
+            XHR.open("POST", "http://localhost:8080/data");
 
             let form = new FormData(document.getElementById("form"));
+
+            console.log(form);
 
             XHR.send(form);
         }
 
-        // Clear name input
+        // Clear name input (button)
         document.getElementById("clear").onclick = function(){
             document.getElementById("result").innerHTML = "";
+            document.getElementById("name").value = "";
         };
 
+        // Clear name input........................... (manually)
+        document.getElementById("name").oninput = function(event){
+            if(event.target.value == "") {
+                document.getElementById("result").innerHTML = "";
+            }
+        };
+
+        // Submit form
         document.getElementById("submit").onclick = getGPA;
     </script>
 <html>
