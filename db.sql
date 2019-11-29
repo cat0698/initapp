@@ -13,5 +13,5 @@ CREATE TABLE `record`(
 );
 
 INSERT INTO record (name, math, physics, chem)
-VALUES ("John Doe", "B", "A", "B"), ("Camila Rodriguez", "C", "C", "B"), ("Jackson Mississippi", "C", "F", "D"), ("Theresa Thorul", "A", "A", "A");
+VALUES ("John Doe", "B", "A", "F"), ("Cam Smith", "C", "C", "B"), ("Jane Se", "C", "F", "A"), ("Tam Tom", "A", "C", "A"), ("Fran May", "A", "B", "D"), ("Sofia Ab", "A", "C", "A"), ("Mark Lowen", "B", "D", "A");
 
