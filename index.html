@@ -22,8 +22,23 @@
 			display: inline-block;
 			font-size: 16px;
 		}
-		#submit {
-			background-color: #04d43c;
+		#submit:hover {
+			background-color: #45a049;
+		}
+		#clear:hover{
+			background-color: #eb372a;
+		}
+		input[type=text]{
+			/*width: 100%;*/
+			padding: 12px 20px;
+			/*margin: 8px 0;*/
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+		input[type=text]:focus {
+  			border: 3px solid #555;
 		}
 		.center {
 			margin: auto;
@@ -50,7 +65,7 @@
         <h1>GPA Calculator</h1>
     </header>
     <body class="center">
-        <p class="center">Please input your name:</p>
+        <p class="center">Enter your first and last name:</p>
         <form id="form" class="center">
             <input type="text" name="name" id="name">
         </form>
@@ -64,6 +79,11 @@
          <p class="copyright">All rights reserved &copy; Catherine Abbruzzese 2019<p>
     </footer>
     <script>
+		function capitalize(str) {
+    		return str.replace(/\w\S*/g, function(txt){
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+			});
+		}
         const getGPA = function(event) {
 
             event.preventDefault();
@@ -84,13 +104,27 @@
 
             let form = new FormData(document.getElementById("form"));
 
+            // body-parser can't read multipart formData, modifying to encoded url type
             XHR.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-            console.log(form);
+            let value = form.get('name');
 
-            form = "name=Jackson%20Mississippi";
+            // change to upper case for queries
+            let replaced = capitalize(value);
+
+            // encode name
+            replaced = value.split(' ').join('%20');
+
+            form = "name=" + replaced;
             XHR.send(form);
         }
+
+        // When Enter is pressed, submit form
+		document.getElementById("name").onkeydown = function(e){
+			if(e.keyCode == 13){
+				getGPA;
+			}
+		};
 
         // Clear name input (button)
         document.getElementById("clear").onclick = function(){
