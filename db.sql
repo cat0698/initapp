@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS `webapp`;
 USE `webapp`;
 
+DROP TABLE IF EXISTS `record`;
 CREATE TABLE `record`(
     `s_no` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(128) NOT NULL,
