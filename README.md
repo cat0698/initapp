@@ -43,10 +43,10 @@ Sample data is inserted into the database automatically.
 
 Calculate the GPA of any of the following users by typing in their name in the search box:
 
-*John Doe
-*Cam Smit
-*Jane Se
-*Tam Tom
-*Fran May
-*Sofia Ab
-*Mark Lowen
+* John Doe
+* Cam Smit
+* Jane Se
+* Tam Tom
+* Fran May
+* Sofia Ab
+* Mark Lowen
