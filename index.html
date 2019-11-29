@@ -10,13 +10,33 @@
 			padding: 0;
 		}
 		h1 {
-			color: blue;
-			padding-bottom: 5px;
-			}
+			color: #0b009e;
+			padding-bottom: 25px;
+			padding-top: 10px;
+		}
+		body {
+			background-image: url("https://images.unsplash.com/photo-1564939558297-fc396f18e5c7?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjU1MTN9");
+		}
+		footer {
+			height: 65px;
+			margin-top: 25%;
+			width: 16%;
+		}
+		p.copyright {
+			position: absolute;
+			width: 100%;
+			line-height: 40px;
+			font-size: 0.7em;
+			text-align: center;
+			bottom:0;
+		}
+		p.instructions {
+			padding-bottom: 10px;
+		}
 		input[type=submit], button {
 			border: none;
 			color: black;
-			padding: 10px 25px;
+			padding: 10px 15px;
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
@@ -24,6 +44,9 @@
 		}
 		#submit:hover {
 			background-color: #45a049;
+		}
+		#clear{
+			margin-top: 5px;
 		}
 		#clear:hover{
 			background-color: #eb372a;
@@ -40,30 +63,20 @@
 		}
 		.center {
 			margin: auto;
-			width: 50%;
-			padding: 5px;
-			}
-		footer {
-    		position: relative;
-    		height: 50px;
-    		margin-top: 69%;
-    		width: 100%;
+			width: 20%;
 		}
-
-		p.copyright {
-    		position: absolute;
-    		width: 100%;
-    		line-height: 40px;
-    		font-size: 0.7em;
-    		text-align: center;
-    		bottom:0;
+		#result {
+			font-weight: bold;
+			color: #820915;
+			padding: 20px;
+			font-size: 25px;
 		}
     </style>
     <header class="center">
         <h1>GPA Calculator</h1>
     </header>
-    <body class="center">
-        <p class="center">Enter your first and last name:</p>
+    <body>
+        <p class="center instructions">Enter your first and last name:</p>
         <form id="form" class="center">
             <input type="text" name="name" id="name">
         	<input type="submit" id="submit" value="Submit">
