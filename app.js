@@ -65,6 +65,8 @@ app.post('/data', function(req, res) {
         // If -1 (F), use 0 
         let gpa = ((math == -1 ? 0 : math) + (physics == -1 ? 0 : physics) + (chem == -1 ? 0 : chem)) / 3;
 
+        gpa = Math.round(gpa * 100) / 100
+
         res.send("Your GPA is " + gpa);
     });
 });
