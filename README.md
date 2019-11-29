@@ -23,11 +23,11 @@ https://dev.mysql.com/downloads/installer/
 
 Local instance will be running automatically after installation
 
-Build the database by importing the .sql file into the server
-
 ### Usage
 
 Navigate to the directory of the backend in your terminal and run the following command:
-```node
-app.js
+```bash
+node app.js
 ```
+
+Build the database by importing the .sql file into the server
