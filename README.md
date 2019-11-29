@@ -44,7 +44,7 @@ Sample data is inserted into the database automatically.
 Calculate the GPA of any of the following users by typing in their name in the search box:
 
 * John Doe
-* Cam Smit
+* Cam Smith
 * Jane Se
 * Tam Tom
 * Fran May
