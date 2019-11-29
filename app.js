@@ -32,8 +32,14 @@ app.get('/', function(req, res) {
 app.post('/data', function(req, res) {
 
     // extract sent user info
-    console.log(req.body);
     let data = req.body.name;
+
+    // Case of a submit without input
+    if (data == ''){
+        console.log('Name is empty string');
+        res.send('Please input a name');
+        return;
+    }
 
     connection.query('SELECT math, physics, chem FROM record WHERE name = "' + data + '";', function(err, rows, fields) {
 
@@ -45,14 +51,18 @@ app.post('/data', function(req, res) {
 
         // No entries returned
         if (rows < 1) {
-            console.log('Name not found');
+            console.log('Query returned empty set');
+            res.send('Sorry, name not found');
+            return;
         }
 
-        // Calculate GPA
+        // Calculate GPA by converting into numerical values
+        // If grade is an F, result will be -1
         let math = 69 - rows[0].math.charCodeAt(0);
         let physics = 69 - rows[0].physics.charCodeAt(0);
         let chem = 69 - rows[0].chem.charCodeAt(0);
 
+        // If -1 (F), use 0 
         let gpa = ((math == -1 ? 0 : math) + (physics == -1 ? 0 : physics) + (chem == -1 ? 0 : chem)) / 3;
 
         res.send("Your GPA is " + gpa);
