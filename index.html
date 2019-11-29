@@ -13,7 +13,7 @@
 			color: blue;
 			padding-bottom: 5px;
 			}
-		button {
+		input[type=submit], button {
 			border: none;
 			color: black;
 			padding: 10px 25px;
@@ -29,9 +29,7 @@
 			background-color: #eb372a;
 		}
 		input[type=text]{
-			/*width: 100%;*/
 			padding: 12px 20px;
-			/*margin: 8px 0;*/
 			display: inline-block;
 			border: 1px solid #ccc;
 			border-radius: 4px;
@@ -68,9 +66,9 @@
         <p class="center">Enter your first and last name:</p>
         <form id="form" class="center">
             <input type="text" name="name" id="name">
+        	<input type="submit" id="submit" value="Submit">
         </form>
         <div class="center">
-        	<button id="submit">Submit</button>
         	<button id="clear">Clear</button>
         </div>
         <div id="result" class="center"></div>
@@ -79,11 +77,13 @@
          <p class="copyright">All rights reserved &copy; Catherine Abbruzzese 2019<p>
     </footer>
     <script>
+    	// Capitalize first letter of every word in a string
 		function capitalize(str) {
     		return str.replace(/\w\S*/g, function(txt){
 			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 			});
 		}
+
         const getGPA = function(event) {
 
             event.preventDefault();
@@ -118,13 +118,6 @@
             form = "name=" + replaced;
             XHR.send(form);
         }
-
-        // When Enter is pressed, submit form
-		document.getElementById("name").onkeydown = function(e){
-			if(e.keyCode == 13){
-				getGPA;
-			}
-		};
 
         // Clear name input (button)
         document.getElementById("clear").onclick = function(){
